@@ -79,3 +79,9 @@ class Calculator:
         isr_amount = round(isr_tuple[0], 2)
         
         return isr_amount
+    
+    def net_salary(self):
+        net_salary = self.base_salary - self.sfs() - self.afp() - self.isr()
+        net_salary = round(net_salary, 2)
+                 
+        return net_salary

@@ -9,31 +9,31 @@ class TestGetSFS(unittest.TestCase):
     """
     def test_salary_of_3k(self):
         salary = Calculator(3e3)
-        self.assertEqual(salary.sfs(), 91.2, "Incorrect SFS with 3K")
+        self.assertEqual(salary.sfs(), 91.2, "Incorrect SFS with base salary of 3K")
     
     def test_salary_of_15k(self):
         salary = Calculator(1.5e4)
-        self.assertEqual(salary.sfs(), 456, "Incorrect SFS with 15K")
+        self.assertEqual(salary.sfs(), 456, "Incorrect SFS with base salary of 15K")
     
     def test_salary_of_30k(self):
         salary = Calculator(3e4)
-        self.assertEqual(salary.sfs(), 912, "Incorrect SFS with 30K")
+        self.assertEqual(salary.sfs(), 912, "Incorrect SFS with base salary of 30K")
     
     def test_salary_of_60k(self):
         salary = Calculator(6e4)
-        self.assertEqual(salary.sfs(), 1824, "Incorrect SFS with 60K")
+        self.assertEqual(salary.sfs(), 1824, "Incorrect SFS with base salary of 60K")
     
     def test_salary_of_90k(self):
         salary = Calculator(9e4)
-        self.assertEqual(salary.sfs(), 2736, "Incorrect SFS with 90K")
+        self.assertEqual(salary.sfs(), 2736, "Incorrect SFS with base salary of 90K")
     
     def test_salary_of_120k(self):
         salary = Calculator(1.2e5)
-        self.assertEqual(salary.sfs(), 3648, "Incorrect SFS with 120K")
+        self.assertEqual(salary.sfs(), 3648, "Incorrect SFS with base salary of 120K")
         
     def test_salary_of_200k(self):
         salary = Calculator(2e5)
-        self.assertEqual(salary.sfs(), 4742.40, "Incorrect SFS with 200K")
+        self.assertEqual(salary.sfs(), 4742.40, "Incorrect SFS with base salary of 200K")
          
 class TestGetAFP(unittest.TestCase):
     """
@@ -43,31 +43,31 @@ class TestGetAFP(unittest.TestCase):
     """
     def test_salary_of_3k(self):
         salary = Calculator(3e3)
-        self.assertEqual(salary.afp(), 86.1, "Incorrect AFP with 3K")
+        self.assertEqual(salary.afp(), 86.1, "Incorrect AFP with base salary of 3K")
     
     def test_salary_of_15k(self):
         salary = Calculator(1.5e4)
-        self.assertEqual(salary.afp(), 430.5, "Incorrect AFP with 15K")
+        self.assertEqual(salary.afp(), 430.5, "Incorrect AFP with base salary of 15K")
     
     def test_salary_of_30k(self):
         salary = Calculator(3e4)
-        self.assertEqual(salary.afp(), 861, "Incorrect AFP with 30K")
+        self.assertEqual(salary.afp(), 861, "Incorrect AFP with base salary of 30K")
     
     def test_salary_of_60k(self):
         salary = Calculator(6e4)
-        self.assertEqual(salary.afp(), 1722, "Incorrect AFP with 60K")
+        self.assertEqual(salary.afp(), 1722, "Incorrect AFP with base salary of 60K")
     
     def test_salary_of_90k(self):
         salary = Calculator(9e4)
-        self.assertEqual(salary.afp(), 2583, "Incorrect AFP with 90K")
+        self.assertEqual(salary.afp(), 2583, "Incorrect AFP with base salary of 90K")
     
     def test_salary_of_120k(self):
         salary = Calculator(1.2e5)
-        self.assertEqual(salary.afp(), 3444, "Incorrect AFP with 120K")
+        self.assertEqual(salary.afp(), 3444, "Incorrect AFP with base salary of 120K")
         
     def test_salary_of_200k(self):
         salary = Calculator(2e5)
-        self.assertEqual(salary.afp(), 5740, "Incorrect AFP with 200K") 
+        self.assertEqual(salary.afp(), 5740, "Incorrect AFP with base salary of 200K") 
 
 class TestGetISR(unittest.TestCase):
     """
@@ -85,35 +85,72 @@ class TestGetISR(unittest.TestCase):
     
     def test_salary_of_3k(self):
         salary = Calculator(3e3)
-        self.assertEqual(salary.isr(), 0, "Incorrect ISR with 3K")
+        self.assertEqual(salary.isr(), 0, "Incorrect ISR with base salary of 3K")
     
     def test_salary_of_15k(self):
         salary = Calculator(1.5e4)
-        self.assertEqual(salary.isr(), 0, "Incorrect ISR with 15K")
+        self.assertEqual(salary.isr(), 0, "Incorrect ISR with base salary of 15K")
     
     def test_salary_of_30k(self):
         salary = Calculator(3e4)
-        self.assertEqual(salary.isr(), 0, "Incorrect ISR with 30K")
+        self.assertEqual(salary.isr(), 0, "Incorrect ISR with base salary of 30K")
     
     def test_salary_of_35k(self):
         salary = Calculator(3.5e4)
-        self.assertEqual(salary.isr(), 47.25, "Incorrect ISR with 35K")
+        self.assertEqual(salary.isr(), 47.25, "Incorrect ISR with base salary of 35K")
     
     def test_salary_of_60k(self):
         salary = Calculator(6e4)
-        self.assertEqual(salary.isr(), 4195.85, "Incorrect ISR with 60K")
+        self.assertEqual(salary.isr(), 4195.85, "Incorrect ISR with base salary of 60K")
     
     def test_salary_of_90k(self):
         salary = Calculator(9e4)
-        self.assertEqual(salary.isr(), 11082.94, "Incorrect ISR with 90K")
+        self.assertEqual(salary.isr(), 11082.94, "Incorrect ISR with base salary of 90K")
     
     def test_salary_of_120k(self):
         salary = Calculator(1.2e5)
-        self.assertEqual(salary.isr(), 18582.94, "Incorrect ISR with 120K")
+        self.assertEqual(salary.isr(), 18582.94, "Incorrect ISR with base salary of 120K")
         
     def test_salary_of_200k(self):
         salary = Calculator(2e5)
-        self.assertEqual(salary.isr(), 38582.94, "Incorrect ISR with 200K") 
+        self.assertEqual(salary.isr(), 38582.94, "Incorrect ISR with base salary of 200K") 
+
+class TestGetNetSalary(unittest.TestCase):
+    """
+    NET SALARY -> Worker's real salary
+    Consists on the base salary minus SFS minus AFP minus ISR
+    """
+    def test_salary_of_3k(self):
+        salary = Calculator(3e3)
+        self.assertEqual(salary.net_salary(), 2822.7, "Incorrect Net Salary with base salary of 3K")
+    
+    def test_salary_of_15k(self):
+        salary = Calculator(1.5e4)
+        self.assertEqual(salary.net_salary(), 14113.5, "Incorrect Net Salary with base salary of 15K")
+    
+    def test_salary_of_30k(self):
+        salary = Calculator(3e4)
+        self.assertEqual(salary.net_salary(), 28227, "Incorrect Net Salary with base salary of 30K")
+    
+    def test_salary_of_35k(self):
+        salary = Calculator(3.5e4)
+        self.assertEqual(salary.net_salary(), 32884.25, "Incorrect Net Salary with base salary of 35K")
+    
+    def test_salary_of_60k(self):
+        salary = Calculator(6e4)
+        self.assertEqual(salary.net_salary(), 52258.15, "Incorrect Net Salary with base salary of 60K")
+    
+    def test_salary_of_90k(self):
+        salary = Calculator(9e4)
+        self.assertEqual(salary.net_salary(), 73598.06, "Incorrect Net Salary with base salary of 90K")
+    
+    def test_salary_of_120k(self):
+        salary = Calculator(1.2e5)
+        self.assertEqual(salary.net_salary(), 94325.06, "Incorrect Net Salary with base salary of 120K")
+        
+    def test_salary_of_200k(self):
+        salary = Calculator(2e5)
+        self.assertEqual(salary.net_salary(), 150934.66, "Incorrect Net Salary with base salary of 200K") 
 
 if __name__ == '__main__':
     unittest.main()
