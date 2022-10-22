@@ -69,6 +69,51 @@ class TestGetAFP(unittest.TestCase):
         salary = Calculator(2e5)
         self.assertEqual(salary.afp(), 5740, "Incorrect AFP with 200K") 
 
+class TestGetISR(unittest.TestCase):
+    """
+    ISR -> Impuestos Sobre la Renta
+    Apply just for net salaries (monthly) over ~34,667$ DOP.
+    To calculate it we must start talking about anual values.
+    
+    TABLE:
+        A.S = Anual Salaries
+        
+        - 416,220.01 < A.S < 624,329.00 = 15% of (A.S - 416,220.01)
+        - 624,329.01 < A.S < 867,123.00 = 31,216 + 20% of (A.S - 624,329.01)
+        - 867,123.01 < A.S = 79,776 + 25% of (A.S - 867,123.01)
+    """
+    
+    def test_salary_of_3k(self):
+        salary = Calculator(3e3)
+        self.assertEqual(salary.isr(), 0, "Incorrect ISR with 3K")
+    
+    def test_salary_of_15k(self):
+        salary = Calculator(1.5e4)
+        self.assertEqual(salary.isr(), 0, "Incorrect ISR with 15K")
+    
+    def test_salary_of_30k(self):
+        salary = Calculator(3e4)
+        self.assertEqual(salary.isr(), 0, "Incorrect ISR with 30K")
+    
+    def test_salary_of_35k(self):
+        salary = Calculator(3.5e4)
+        self.assertEqual(salary.isr(), 47.25, "Incorrect ISR with 35K")
+    
+    def test_salary_of_60k(self):
+        salary = Calculator(6e4)
+        self.assertEqual(salary.isr(), 4195.85, "Incorrect ISR with 60K")
+    
+    def test_salary_of_90k(self):
+        salary = Calculator(9e4)
+        self.assertEqual(salary.isr(), 11082.94, "Incorrect ISR with 90K")
+    
+    def test_salary_of_120k(self):
+        salary = Calculator(1.2e5)
+        self.assertEqual(salary.isr(), 18582.94, "Incorrect ISR with 120K")
+        
+    def test_salary_of_200k(self):
+        salary = Calculator(2e5)
+        self.assertEqual(salary.isr(), 38582.94, "Incorrect ISR with 200K") 
 
 if __name__ == '__main__':
     unittest.main()
