@@ -6,12 +6,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de salario</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" />
 </head>
+
 <body>
-    <form action="" method="POST" id="salaryForm">
-        <input type="number" required step=".01" name="Base salary" id="base_salary">
-        <button id="submitButton">Calcular</button>
-    </form>
+    <div class="vertical-center" id="main-container">        
+        <h1 class="text-center" id="title">Calculadora de salario</h1>
+        <form action="" method="POST" id="salaryForm">
+            <div id="salaryDiv" class="">
+                <label>Salario base (en DOP)</label>
+                <input type="number" class="form-control" required placeholder="0.0" step=".01" name="Base salary" id="base_salary">
+                <div class="form-text">Debes escribirlo sin comas y, en caso de tener decimales, solo con dos decimales</div>
+            </div>
+            <div id="hoursDiv">
+                <label>Horas extras (en DOP)</label>
+                <input type="number" placeholder="0.0" step=".01" class="form-control" name="Horas extras" id="extra_hours">
+            </div>
+            <div id="bonificationsDiv">
+                <label>Bonificaciones (en DOP)</label>
+                <input type="number" placeholder="0.0" step=".01" class="form-control" name="Bonificaciones" id="bonifications">
+            </div>
+            <button type="submit" class="btn btn-success" id="submitButton">Calcular</button>
+        </form>
+    </div>
+
+    <div id="modal">
+        <h1>Some charset</h1>
+    </div>
+
     <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
