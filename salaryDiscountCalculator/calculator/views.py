@@ -2,21 +2,24 @@ from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 import json
+
+from requests import JSONDecodeError
 from calculator.calculator import Calculator
 
 @csrf_exempt
 def main(request):
     if request.method == 'POST':
         base_salary, bonifications, extra_hours = float(), 0.0, 0.0
-        print(request.body)
-        body = json.loads(request.body)
-        base_salary = float(body.get('baseSalary'))
+        try:
+            body = json.loads(request.body)
+            base_salary = float(body.get('baseSalary'))
             
-        if body.get('bonifications'):
-            bonifications = float(body.get('bonifications'))
-        if body.get('extraHours'):
-            extra_hours = float(body.get('extraHours'))
-        
+            if body.get('bonifications'):
+                bonifications = float(body.get('bonifications'))
+            if body.get('extraHours'):
+                extra_hours = float(body.get('extraHours'))
+        except:
+            return JsonResponse({"Error": "Trying to parse baseSalary"})
         
         base_calculator = Calculator(base_salary, bonifications=bonifications, extra_hours=extra_hours)
             
