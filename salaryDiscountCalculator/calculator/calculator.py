@@ -1,6 +1,14 @@
+"""
+TSS, sfs, afp : Salario y Comision
+Bonos: ISR
+Horas extras: ISR
+"""
+
 class Calculator:
-    def __init__(self, salary: int):
+    def __init__(self, salary: float, bonifications: float = 0.0, extra_hours: float = 0.0):
         self.base_salary = salary
+        self.extra_hours = extra_hours
+        self.bonifications = bonifications
     
     def sfs(self) -> float:
         """
@@ -13,7 +21,7 @@ class Calculator:
         
         if sfs_amount > 4742.40:
             return 4742.40
-        return float(sfs_amount)
+        return round(float(sfs_amount),2)
     
     def afp(self) -> float:
         """
@@ -26,10 +34,10 @@ class Calculator:
         
         if afp_amount > 8954.40:
             return 8954.40
-        return float(afp_amount)
+        return round(float(afp_amount), 2)
     
     def mensual_isr_calculations(self, anual_salary: float) -> list:
-        anual_isr_amount, mensual_isr = float(), float()
+        mensual_isr = float()
         message = str()
         
         if anual_salary < 416220:
@@ -65,14 +73,17 @@ class Calculator:
             - 867,123.01 < A.S = 79,776 + 25% of (A.S - 867,123.01)
         """
         
-        anual_salary = float(self.base_salary * 12)
+        anual_salary = float(self.base_salary * 12 + self.bonifications * 12 + self.extra_hours * 12)
         isr_list = self.mensual_isr_calculations(anual_salary)
         isr_list[0] = round(isr_list[0], 2)
         
         return isr_list
     
+    def retentions(self) -> float:
+        return round(self.sfs() + self.afp() + self.isr()[0],2)
+    
     def net_salary(self):
-        net_salary = self.base_salary - self.sfs() - self.afp() - self.isr()[0]
+        net_salary = self.base_salary + self.bonifications + self.extra_hours - self.retentions()
         net_salary = round(net_salary, 2)
                  
         return net_salary
