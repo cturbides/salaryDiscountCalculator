@@ -28,7 +28,7 @@ class Calculator:
             return 8954.40
         return float(afp_amount)
     
-    def mensual_isr_calculations(self, anual_salary: float) -> tuple:
+    def mensual_isr_calculations(self, anual_salary: float) -> list:
         anual_isr_amount, mensual_isr = float(), float()
         message = str()
         
@@ -38,29 +38,20 @@ class Calculator:
         elif 416220 < anual_salary < 624329:
             anual_isr_amount = (anual_salary - 416220.01)*.15
             mensual_isr = anual_isr_amount/12
-            message = """
-            Anual Salaries over 416,220$ DOP and less than 624,329$ DOP
-            just have to pay the 15% of the surplus of 416,220.01$ DOP  
-            """
+            message = "Anual Salaries over 416,220$ DOP and less than 624,329$ DOP just have to pay the 15% of the surplus of 416,220.01$ DOP"  
+            
         elif 624329 < anual_salary < 867123:
             anual_isr_amount = 31216 + (anual_salary - 624329.01)*.20
             mensual_isr = anual_isr_amount/12
-            message = """
-            Anual Salaries over 624,329$ DOP and less than 867,123$ DOP
-            just have to pay 31,216$ DOP plus the 20% of the surplus of 
-            624,329.01$ DOP  
-            """
+            message = "Anual Salaries over 624,329$ DOP and less than 867,123$ DOP just have to pay 31,216$ DOP plus the 20% of the surplus of 624,329.01$ DOP"  
         else:
             anual_isr_amount = 79776 + (anual_salary - 867123.01)*.25
             mensual_isr = anual_isr_amount/12
-            message = """
-            Anual Salaries over 867,123$ DOP just have to pay 79,776$ DOP
-            plus the 25% of the surplus of 867,123.01$ DOP  
-            """
+            message = "Anual Salaries over 867,123$ DOP just have to pay 79,776$ DOP plus the 25% of the surplus of 867,123.01$ DOP"
             
-        return (mensual_isr, message)
+        return [mensual_isr, message]
     
-    def isr(self) -> float:
+    def isr(self) -> tuple:
         """
         ISR -> Impuestos Sobre la Renta
         Apply just for net salaries (monthly) over ~34,667$ DOP.
@@ -75,13 +66,13 @@ class Calculator:
         """
         
         anual_salary = float(self.base_salary * 12)
-        isr_tuple = self.mensual_isr_calculations(anual_salary)
-        isr_amount = round(isr_tuple[0], 2)
+        isr_list = self.mensual_isr_calculations(anual_salary)
+        isr_list[0] = round(isr_list[0], 2)
         
-        return isr_amount
+        return isr_list
     
     def net_salary(self):
-        net_salary = self.base_salary - self.sfs() - self.afp() - self.isr()
+        net_salary = self.base_salary - self.sfs() - self.afp() - self.isr()[0]
         net_salary = round(net_salary, 2)
                  
         return net_salary

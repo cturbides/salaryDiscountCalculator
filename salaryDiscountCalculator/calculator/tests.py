@@ -85,35 +85,35 @@ class TestGetISR(unittest.TestCase):
     
     def test_salary_of_3k(self):
         salary = Calculator(3e3)
-        self.assertEqual(salary.isr(), 0, "Incorrect ISR with base salary of 3K")
+        self.assertEqual(salary.isr()[0], 0, "Incorrect ISR with base salary of 3K")
     
     def test_salary_of_15k(self):
         salary = Calculator(1.5e4)
-        self.assertEqual(salary.isr(), 0, "Incorrect ISR with base salary of 15K")
+        self.assertEqual(salary.isr()[0], 0, "Incorrect ISR with base salary of 15K")
     
     def test_salary_of_30k(self):
         salary = Calculator(3e4)
-        self.assertEqual(salary.isr(), 0, "Incorrect ISR with base salary of 30K")
+        self.assertEqual(salary.isr()[0], 0, "Incorrect ISR with base salary of 30K")
     
     def test_salary_of_35k(self):
         salary = Calculator(3.5e4)
-        self.assertEqual(salary.isr(), 47.25, "Incorrect ISR with base salary of 35K")
+        self.assertEqual(salary.isr()[0], 47.25, "Incorrect ISR with base salary of 35K")
     
     def test_salary_of_60k(self):
         salary = Calculator(6e4)
-        self.assertEqual(salary.isr(), 4195.85, "Incorrect ISR with base salary of 60K")
+        self.assertEqual(salary.isr()[0], 4195.85, "Incorrect ISR with base salary of 60K")
     
     def test_salary_of_90k(self):
         salary = Calculator(9e4)
-        self.assertEqual(salary.isr(), 11082.94, "Incorrect ISR with base salary of 90K")
+        self.assertEqual(salary.isr()[0], 11082.94, "Incorrect ISR with base salary of 90K")
     
     def test_salary_of_120k(self):
         salary = Calculator(1.2e5)
-        self.assertEqual(salary.isr(), 18582.94, "Incorrect ISR with base salary of 120K")
+        self.assertEqual(salary.isr()[0], 18582.94, "Incorrect ISR with base salary of 120K")
         
     def test_salary_of_200k(self):
         salary = Calculator(2e5)
-        self.assertEqual(salary.isr(), 38582.94, "Incorrect ISR with base salary of 200K") 
+        self.assertEqual(salary.isr()[0], 38582.94, "Incorrect ISR with base salary of 200K") 
 
 class TestGetNetSalary(unittest.TestCase):
     """

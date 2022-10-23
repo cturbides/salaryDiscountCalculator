@@ -8,10 +8,10 @@
     <title>Calculadora de salario</title>
 </head>
 <body>
-    <form action="" method="POST">
-        <input type="number" step=".01" name="Base salary" id="base_salary">
-        <input type="submit" value="Calcular">
+    <form action="" method="POST" id="salaryForm">
+        <input type="number" required step=".01" name="Base salary" id="base_salary">
+        <button id="submitButton">Calcular</button>
     </form>
-    <script src="{% static  'calculator/main.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
 </body>
 </html>
