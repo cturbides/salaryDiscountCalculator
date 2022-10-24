@@ -14,7 +14,7 @@ class Calculator:
         """
         SFS -> Seguro Familiar de Salud
         Is equal to the 3.04% of the net salary, with a maximun set
-            to 4,742.40$ DOP
+            to 4,943.80$ DOP
         """
         
         sfs_amount = (self.base_salary * 3.04)/100
@@ -27,7 +27,7 @@ class Calculator:
         """
         AFP -> Administradora de Fondo de Pensiones
         Is equal to the 2.87% of the net salary, with a maximun set
-            to 8,954.40$ DOP
+            to 9,334.68$ DOP
         """
         
         afp_amount = (self.base_salary * 2.87)/100
