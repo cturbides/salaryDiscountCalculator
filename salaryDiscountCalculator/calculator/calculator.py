@@ -19,8 +19,8 @@ class Calculator:
         
         sfs_amount = (self.base_salary * 3.04)/100
         
-        if sfs_amount > 4742.40:
-            return 4742.40
+        if sfs_amount > 4943.80:
+            return 4943.80
         return round(float(sfs_amount),2)
     
     def afp(self) -> float:
@@ -32,8 +32,8 @@ class Calculator:
         
         afp_amount = (self.base_salary * 2.87)/100
         
-        if afp_amount > 8954.40:
-            return 8954.40
+        if afp_amount > 9334.68:
+            return 9334.68
         return round(float(afp_amount), 2)
     
     def mensual_isr_calculations(self, anual_salary: float) -> list:
@@ -73,7 +73,7 @@ class Calculator:
             - 867,123.01 < A.S = 79,776 + 25% of (A.S - 867,123.01)
         """
         
-        anual_salary = float(self.base_salary * 12 + self.bonifications * 12 + self.extra_hours * 12)
+        anual_salary = float(self.base_salary + self.bonifications+ self.extra_hours- self.sfs() - self.afp()) * 12
         isr_list = self.mensual_isr_calculations(anual_salary)
         isr_list[0] = round(isr_list[0], 2)
         
